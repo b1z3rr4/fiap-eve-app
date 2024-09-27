@@ -15,10 +15,13 @@ export function Search() {
 
     const handleClick = () => {
         axios.request({
-            method: 'GET',
-            url: `http://localhost:3000/alunas?filterName=${inputText}`,
+            method: 'POST',
+            url: `http://localhost:3000/alunas`,
+            data: {
+                nome: inputText
+            }
         });
-    };
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newInputValue = event.currentTarget.value;
@@ -27,9 +30,8 @@ export function Search() {
 
     return (
         <>
-            <Input value={inputText} type="text" onChange={handleChange} placeholder="Pesquise por algo...." />
-            <p>{inputText}</p>
-            <Button label="Pesquisar" onClick={handleClick} />
+            <Input value={inputText} type="text" onChange={handleChange} placeholder="Digite o nome da aluna...." />
+            <Button label="Criar" onClick={handleClick} />
         </>
     )
 }

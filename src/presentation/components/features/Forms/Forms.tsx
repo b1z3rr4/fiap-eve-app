@@ -19,3 +19,9 @@
  Rodar no terminal: npm i json-server
  Rodar no terminal: npx json-server db.json
 */
+
+export type Events = {
+   titulo: string;
+   tipo: string;
+   valor: number;
+}
