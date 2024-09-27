@@ -31,3 +31,27 @@ https://pt-br.legacy.reactjs.org/docs/introducing-jsx.html
 ```js
     npm install
 ```
+
+
+### Ciclo de vida dos estados do React
+
+- Uma string com valor 'FIAP'
+- Registra no useState
+- uma variavel com o valor da string -> memoria temporária
+- uma função de mudança
+- registra um listener para esse estado
+
+- o react muda o valor la no espaco de variaveis temporarias
+- ele pega esse valor alterado
+- devolve pro componente
+- o componente atualiza (renderiza novamente) -> VIRTUAL DOM
+- compara com a DOM Real
+- Atualiza a tela
+
+
+
+[
+    {
+        inputText: 'FIAP'
+    }
+]

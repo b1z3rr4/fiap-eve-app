@@ -6,18 +6,20 @@ export function Input({
     onChange, 
     defaultValue,
     disabled,
+    value,
     tabIndex
 }: {
-    size: number,
     type: string,
-    tabIndex: number;
-    maxLength: number,
-    disabled: boolean,
-    placeholder: string,
-    onChange: () => void,
-    defaultValue: string | number | readonly string[] | undefined,
+    size?: number,
+    tabIndex?: number;
+    maxLength?: number,
+    disabled?: boolean,
+    placeholder?: string,
+    value?: string | number | readonly string[] | undefined;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    defaultValue?: string | number | readonly string[] | undefined;
 }) {
     return (
-        <input size={size} type={type} placeholder={placeholder} maxLength={maxLength} onChange={onChange} defaultValue={defaultValue} disabled={disabled} tabIndex={tabIndex} />
+        <input size={size} value={value} type={type} placeholder={placeholder} maxLength={maxLength} onChange={onChange} defaultValue={defaultValue} disabled={disabled} tabIndex={tabIndex} />
     )
 }
