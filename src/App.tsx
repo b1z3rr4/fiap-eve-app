@@ -1,10 +1,10 @@
 import "./App.css";
-import { Search } from "./presentation/components/modules/Search";
+import { Forms } from "./presentation/components/features/Forms";
 
 function App() {
   return (
     <>
-      <Search />
+      <Forms />
     </>
   );
 }

@@ -1,13 +1,14 @@
 // React Fragment
 // Dumb Components
 // Tipagem direta
-export function Button({ label, onClick, disabled = false }: {
+export function Button({ label, onClick, disabled = false, type }: {
     label: string;
-    onClick: () => void; // usado para quando a função não retorna nada.
+    type?: "submit" | "reset" | "button" | undefined;
+    onClick?: () => void; // usado para quando a função não retorna nada.
     disabled?: boolean;
 }) {
     return (
-        <button onClick={onClick} disabled={disabled}>{label}</button>
+        <button onClick={onClick} disabled={disabled} type={type}>{label}</button>
     );
 }
 

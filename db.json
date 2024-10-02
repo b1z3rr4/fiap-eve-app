@@ -1,28 +1,3 @@
 {
-  "alunas": [
-    {
-      "id": "1d98",
-      "nome": "Natalia"
-    },
-    {
-      "id": "6c42",
-      "nome": "Susana"
-    },
-    {
-      "id": "f86a",
-      "nome": "FIAP React"
-    },
-    {
-      "id": "a733",
-      "nome": "Jociane"
-    },
-    {
-      "id": "8355",
-      "nome": "Lucimar"
-    },
-    {
-      "id": "a98e",
-      "nome": "Leticia"
-    }
-  ]
+  "eventos": []
 }

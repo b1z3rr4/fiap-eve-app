@@ -1,25 +1,42 @@
+import { HTMLProps } from "react";
+
+// Eu quero todas as props (atributos) do elemento html <input>
+// HTMLProps<HTMLInputElement>
+
 export function Input({
-    size,
-    type,
-    placeholder,
-    maxLength, 
-    onChange, 
-    defaultValue,
-    disabled,
-    value,
-    tabIndex
-}: {
-    type: string,
-    size?: number,
-    tabIndex?: number;
-    maxLength?: number,
-    disabled?: boolean,
-    placeholder?: string,
-    value?: string | number | readonly string[] | undefined;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    defaultValue?: string | number | readonly string[] | undefined;
-}) {
-    return (
-        <input size={size} value={value} type={type} placeholder={placeholder} maxLength={maxLength} onChange={onChange} defaultValue={defaultValue} disabled={disabled} tabIndex={tabIndex} />
-    )
+  id,
+  step,
+  size,
+  type,
+  label,
+  placeholder,
+  maxLength,
+  onChange,
+  defaultValue,
+  disabled,
+  value,
+  tabIndex,
+  checked,
+  pattern,
+}: HTMLProps<HTMLInputElement>) {
+  return (
+    <label htmlFor={id}>
+      {label}
+      <input
+        id={id}
+        step={step}
+        size={size}
+        type={type}
+        value={value}
+        pattern={pattern}
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        tabIndex={tabIndex}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+      />
+    </label>
+  );
 }
