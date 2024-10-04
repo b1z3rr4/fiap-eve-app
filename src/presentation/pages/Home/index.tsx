@@ -1,8 +1,9 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Button } from "../../components/elements/Button";
+import { useHistory } from "../../../application/libs/history";
 
 export function Home() {
-  const navigate = useNavigate();
+  const { navigate } = useHistory();
 
   return (
     <div>
@@ -10,7 +11,9 @@ export function Home() {
       <Button
         label="Ir para form"
         onClick={() => {
-          navigate(1);
+            // /form -> atualizar a string toda
+            // form -> apenas adicionar a nova string no caminho atual
+          navigate('form');
         }}
       />
       <Outlet />
