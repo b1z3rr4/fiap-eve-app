@@ -1,11 +1,12 @@
 import "./App.css";
-import { Forms } from "./presentation/components/features/Forms";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoute } from "./presentation/routes";
 
 function App() {
   return (
-    <>
-      <Forms />
-    </>
+    <BrowserRouter>
+      <AppRoute />
+    </BrowserRouter>
   );
 }
 
