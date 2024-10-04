@@ -1,4 +1,5 @@
 import { HTMLProps } from "react";
+import * as S from "./styles";
 
 // Eu quero todas as props (atributos) do elemento html <input>
 // HTMLProps<HTMLInputElement>
@@ -7,22 +8,21 @@ export function Input({
   id,
   step,
   size,
-  type,
+  type = "string",
   label,
-  placeholder,
-  maxLength,
-  onChange,
-  defaultValue,
-  disabled,
   value,
-  tabIndex,
   checked,
   pattern,
+  tabIndex,
+  onChange,
+  disabled,
+  maxLength,
+  placeholder,
+  defaultValue,
 }: HTMLProps<HTMLInputElement>) {
   return (
-    <label htmlFor={id}>
-      {label}
-      <input
+    <S.LabelStyle htmlFor={id}>
+      <S.InputStyle
         id={id}
         step={step}
         size={size}
@@ -37,6 +37,7 @@ export function Input({
         placeholder={placeholder}
         defaultValue={defaultValue}
       />
-    </label>
+      <S.SpanStyle type={type}>{label}</S.SpanStyle>
+    </S.LabelStyle>
   );
 }

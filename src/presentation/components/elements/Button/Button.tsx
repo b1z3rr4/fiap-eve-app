@@ -1,3 +1,5 @@
+import * as S from './styles';
+
 // React Fragment
 // Dumb Components
 // Tipagem direta
@@ -8,7 +10,7 @@ export function Button({ label, onClick, disabled = false, type }: {
     disabled?: boolean;
 }) {
     return (
-        <button onClick={onClick} disabled={disabled} type={type}>{label}</button>
+        <S.ButtonStyle onClick={onClick} disabled={disabled} type={type}>{label}</S.ButtonStyle>
     );
 }
 
