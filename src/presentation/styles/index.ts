@@ -1,3 +1,5 @@
+import './global.css';
+
 export const theme = {
     primaryColor: '#0077b6',
     secondaryColor: '#ffba08',

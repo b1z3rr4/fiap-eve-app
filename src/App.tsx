@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoute } from "./presentation/routes";
 import { GlobalTheme } from "./application/libs/styling";
