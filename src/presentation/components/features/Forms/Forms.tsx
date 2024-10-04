@@ -20,6 +20,10 @@
  Rodar no terminal: npx json-server db.json
 */
 
+/**
+ * Fazer o input com formatação de MOEDA
+ */
+
 import { useState } from "react";
 import { Input } from "../../elements/Input";
 import { Button } from "../../elements/Button";
