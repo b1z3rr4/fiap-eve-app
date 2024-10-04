@@ -1,12 +1,16 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoute } from "./presentation/routes";
+import { GlobalTheme } from "./application/libs/styling";
+import { theme } from "./presentation/styles";
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRoute />
-    </BrowserRouter>
+    <GlobalTheme theme={theme}>
+      <BrowserRouter>
+        <AppRoute />
+      </BrowserRouter>
+    </GlobalTheme>
   );
 }
 
