@@ -36,6 +36,7 @@ export function Input({
         maxLength={maxLength}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        className={value ? 'fulfilled' : ''}
       />
       <S.SpanStyle type={type}>{label}</S.SpanStyle>
     </S.LabelStyle>

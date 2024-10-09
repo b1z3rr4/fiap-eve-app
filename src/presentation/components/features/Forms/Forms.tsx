@@ -24,13 +24,14 @@
  * Fazer o input com formatação de MOEDA
  */
 
-import { useState } from "react";
+import { useContext } from "react";
 import { Input } from "../../elements/Input";
 import { Button } from "../../elements/Button";
-import { RadioGroup } from "../../modules/RadioGroup";
-import { Radio } from "../../modules/Radio";
+// import { RadioGroup } from "../../modules/RadioGroup";
+// import { Radio } from "../../modules/Radio";
 import { Form } from "../../modules/Form";
-import { Option, Select } from "../../modules/Select";
+// import { Option, Select } from "../../modules/Select";
+import { ProfileContext } from "../../../contexts/ProfileContext";
 
 export type Events = {
   titulo: string;
@@ -42,20 +43,22 @@ export type Events = {
  * PRESENCIAL -> Eventos presenciais
  * ONLINE -> Eventos online
  */
-enum TipoEvento {
-  PRESENCIAL = 1, // assume o restante dos numeros a partir do primeiro.
-  ONLINE,
-}
+// enum TipoEvento {
+//   PRESENCIAL = 1, // assume o restante dos numeros a partir do primeiro.
+//   ONLINE,
+// }
 
 // forms hook
 export function Forms() {
-  const [valor, setValor] = useState('');
-  const [titulo, setTitulo] = useState("");
-  const [tipo, setTipo] = useState(TipoEvento.PRESENCIAL);
+  // const [valor, setValor] = useState('');
+  // const [titulo, setTitulo] = useState("");
+  // const [tipo, setTipo] = useState(TipoEvento.PRESENCIAL);
+
+  const { name, setName } = useContext(ProfileContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("clicou");
+    console.log("enviou");
   };
   // elemento html multi-elemento
 
@@ -63,46 +66,12 @@ export function Forms() {
     <Form onSubmit={handleSubmit}>
       <Input
         type="text"
-        value={titulo}
+        value={name}
         id="input-titulo"
-        label="Titulo"
+        label="Nome do usuário"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setTitulo(e.target.value);
+          setName(e.target.value);
         }}
-      />
-
-      <Select
-        id="select-tipo"
-        value={tipo}
-        label="Tipo"
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          setTipo(Number(e.target.value));
-        }}
-      >
-        <Option value={TipoEvento.PRESENCIAL}>Presencial</Option>
-        <Option value={TipoEvento.ONLINE}>Online</Option>
-      </Select>
-
-      <RadioGroup
-        onChange={(value) => {
-          setTipo(Number(value));
-        }}
-        value={tipo}
-        name="radio-tipo"
-      >
-        <Radio label="Presencial" value={TipoEvento.PRESENCIAL} />
-        <Radio label="Online" value={TipoEvento.ONLINE} />
-      </RadioGroup>
-
-      <Input
-        type="text"
-        value={valor}
-        id="input-valor"
-        label="Valor"
-        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-         setValor(e.target.value);
-       }}
       />
 
       <Button label="Enviar" type="submit" />

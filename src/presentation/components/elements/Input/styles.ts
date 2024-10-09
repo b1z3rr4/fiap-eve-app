@@ -7,13 +7,20 @@ export const InputStyle = styling.input`
     border: 1px solid #f2f2f2;
     border-radius: 4px;
     outline: none;
+    color: white;
     transition: border-color .2s ease;
 
     &:focus {
         border: 1px solid #19de;
 
         & + span {
-            top: -8px;
+            top: -12px;
+        }
+    }
+    
+    &.fulfilled {
+        & + span {
+            top: -12px;
         }
     }
 `;
