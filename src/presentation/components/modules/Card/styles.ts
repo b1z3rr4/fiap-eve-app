@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   height: 400px;
   padding: 10px 20px;
   gap: 24px;
-  border-radius: 10px 0 0 0;
+  border-radius: 10px;
   border: 1px solid var(--Border, #E6E6E6);
   background: var(--Surface, #FFFFFF);
   display: flex;

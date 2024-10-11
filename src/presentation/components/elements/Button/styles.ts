@@ -1,20 +1,18 @@
-import { styling } from "../../../../application/libs/styling";
+import styled from "styled-components";
 
-export const ButtonStyle = styling.button`
-    cursor: pointer;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+export const ButtonContainer = styled.button`
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  color: ${({ theme }) => theme.surfaceColor};
+  font-size: ${({ theme }) => theme.poppinsSize};
+  font-family: ${({ theme }) => theme.poppinsFont};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background-color: ${({ theme }) => theme.primaryColor};
 
-
-    color: white;
-    font-size: 16px;
-    border-radius: 4px;
-    background-color: #000;
-    border: 1px solid #000;
-
-    &:hover {
-        border: 1px solid #19de
-    }
+  &:hover {
+    background-color: ${({ theme }) => theme.hoverColor};
+  }
 `;
