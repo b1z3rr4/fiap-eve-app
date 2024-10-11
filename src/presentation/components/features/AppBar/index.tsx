@@ -1,4 +1,5 @@
-import { Logo } from "../../modules/Logo/Logo";
+import { Logo } from "@/presentation/components/modules/Logo/Logo";
+// caminho relativo -> ao arquivo/pasta onde eu estou
 import * as S from "./styles";
 
 export function AppBar() {
