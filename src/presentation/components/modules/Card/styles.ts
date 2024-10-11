@@ -39,3 +39,11 @@ export const CardDescription = styled.p`
     text-align: center;
     margin-bottom: 20px;
 `;
+
+export const ButtonContainer = styled.div`
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 14px;
+`;
