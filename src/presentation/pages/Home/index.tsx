@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Card } from "../../components/modules/Card";
 import { IEvent } from "../../../application/models/event";
 import * as S from "./styles";
+import { CardEmpty } from "../../components/modules/CardEmpty";
 
 export function Home() {
   const [events, setEvents] = useState<IEvent[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const mockEvents: IEvent[] = [
@@ -37,51 +39,13 @@ export function Home() {
         description: "Discussão sobre as tendências de tecnologia...",
         manyRequests: true,
       },
-      {
-        day: "2024-10-18",
-        name: "Workshop de Tecnologia",
-        hour: "10:00",
-        type: "Presencial",
-        photo: "https://via.placeholder.com/150",
-        price: 50,
-        creator: "Maria",
-        latitude: "-23.550520",
-        longitude: "-46.633308",
-        vacancies: 15,
-        description: "Discussão sobre as tendências de tecnologia...",
-        manyRequests: true,
-      },
-      {
-        day: "2024-10-18",
-        name: "Workshop de Tecnologia",
-        hour: "10:00",
-        type: "Presencial",
-        photo: "https://via.placeholder.com/150",
-        price: 50,
-        creator: "Maria",
-        latitude: "-23.550520",
-        longitude: "-46.633308",
-        vacancies: 15,
-        description: "Discussão sobre as tendências de tecnologia...",
-        manyRequests: true,
-      },
-      {
-        day: "2024-10-18",
-        name: "Workshop de Tecnologia",
-        hour: "10:00",
-        type: "Presencial",
-        photo: "https://via.placeholder.com/150",
-        price: 50,
-        creator: "Maria",
-        latitude: "-23.550520",
-        longitude: "-46.633308",
-        vacancies: 15,
-        description: "Discussão sobre as tendências de tecnologia...",
-        manyRequests: true,
-      },
     ];
     setEvents(mockEvents);
   }, []);
+
+  const addNewEvent = () => {
+    navigate("/form");
+  };
 
   return (
     <div>
@@ -89,6 +53,8 @@ export function Home() {
         {events.map((e) => (
           <Card key={e.name} event={e}/>
         ))}
+
+        <CardEmpty onClick={addNewEvent}></CardEmpty>
       </S.HomeContainer>
       <Outlet />
     </div>
