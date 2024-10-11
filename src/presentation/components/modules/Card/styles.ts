@@ -28,10 +28,14 @@ export const CardContainer = styled.div`
 
 export const CardTitle = styled.h3`
     font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
 `;
 
 export const CardDescription = styled.p`
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
 `;

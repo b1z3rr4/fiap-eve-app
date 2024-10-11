@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Card } from "../../components/modules/Card";
 import { IEvent } from "../../../application/models/event";
+import * as S from "./styles";
 
 export function Home() {
   const [events, setEvents] = useState<IEvent[]>([]);
@@ -42,9 +43,11 @@ export function Home() {
 
   return (
     <div>
-      {events.map((e) => (
-        <Card key={e.name} event={e}/>
-      ))}
+      <S.HomeContainer>
+        {events.map((e) => (
+          <Card key={e.name} event={e}/>
+        ))}
+      </S.HomeContainer>
       <Outlet />
     </div>
   );

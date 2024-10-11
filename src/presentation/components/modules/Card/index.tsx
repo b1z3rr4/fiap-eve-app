@@ -10,6 +10,7 @@ export const Card = ({ event }: CardProps) => {
         <S.CardContainer>
             <img src={event.photo} alt={event.name}/>
             <S.CardTitle>{event.name}</S.CardTitle>
+            <S.CardDescription>{event.description}</S.CardDescription>
         </S.CardContainer>
     )
 };
