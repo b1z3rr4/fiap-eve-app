@@ -2,7 +2,7 @@ import styled from "styled-components";
 import eveLogo from "../../../../application/assets/eve.svg";
 
 const LogoParagraph = styled.p`
-  font-size: 64px;
+  font-size: 32px;
   color: #0077b6;
   font-weight: 600;
 `;
