@@ -25,3 +25,13 @@ export const CardContainer = styled.div`
     border-radius: 10px;
   }
 `;
+
+export const CardTitle = styled.h3`
+    font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+`;
+
+export const CardDescription = styled.p`
+`;

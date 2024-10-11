@@ -8,7 +8,8 @@ interface CardProps {
 export const Card = ({ event }: CardProps) => {
     return(
         <S.CardContainer>
-            <p>Meu card</p>
+            <img src={event.photo} alt={event.name}/>
+            <S.CardTitle>{event.name}</S.CardTitle>
         </S.CardContainer>
     )
 };

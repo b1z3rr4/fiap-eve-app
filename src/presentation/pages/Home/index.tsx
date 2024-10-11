@@ -7,7 +7,6 @@ export function Home() {
   const [events, setEvents] = useState<IEvent[]>([]);
 
   useEffect(() => {
-    console.log('veio aqui');
     const mockEvents: IEvent[] = [
       {
         day: "2024-10-15",
