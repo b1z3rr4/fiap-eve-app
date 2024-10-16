@@ -9,13 +9,13 @@ export function FormEvent() {
         <div>
             <h1>Bem vindo(a) a pagina de formulario!</h1>
             <Forms />
-            <Button label="Voltar" onClick={() => {
+            <Button onClick={() => {
                 goBack(); // historia de acessos do usuario e ta voltando uma pagina
-            }}/>
+            }}>Voltar</Button>
 
-            <Button label="Ir para login" onClick={() => {
+            <Button onClick={() => {
                 navigate('/login');
-            }}/>
+            }}>Ir para login</Button>
         </div>
     )
 }

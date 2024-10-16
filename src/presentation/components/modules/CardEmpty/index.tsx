@@ -1,9 +1,13 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 import * as S from "./styles";
 
 export const CardEmpty = ({
-    children,
-    onClick
+  children,
+  onClick,
 }: PropsWithChildren<{ onClick: () => void }>) => {
-    return <S.CardContainer onClick={onClick}>{children}</S.CardContainer>
+  return (
+    <S.CardContainer onClick={onClick}>
+      <S.ChildrenContainer>{children}</S.ChildrenContainer>
+    </S.CardContainer>
+  );
 };
