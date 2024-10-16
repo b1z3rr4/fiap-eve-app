@@ -2,6 +2,8 @@ import { auth } from "@/application/libs/firebase";
 import { useHistory } from "@/application/libs/history";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
+import { useToast } from "../hooks/useToast";
+import { IError } from "@/application/interfaces/IError";
 
 type ContextProps = {
   currentUser: User | null;
@@ -48,6 +50,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: PropsWithChildren) => {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const { navigate } = useHistory();
+    const { notifyError, notifySuccess } = useToast();
 
     useEffect(() => {
         const cachedUser = getSessionCache();
@@ -74,24 +77,25 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-            console.log(user);
             setCurrentUser(user);
             setSessionCache(user);
+            notifySuccess("Login bem-sucedido!");
             navigate("/home");
         } catch (error) {
-            console.error(error);
+            notifyError((error as IError).message);
         }
     }
 
     async function logout() {
         try {
             await signOut(auth);
+
             clearSessionCache();
             setCurrentUser(null);
+            notifySuccess("Logout realizado com sucesso!");
             navigate("/login")
-
         } catch (error) {
-            console.error(error);
+            notifyError((error as IError).message);
         }
     }
 
