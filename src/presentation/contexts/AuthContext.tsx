@@ -1,7 +1,7 @@
 import { auth } from "@/application/libs/firebase";
 import { useHistory } from "@/application/libs/history";
-import { signInWithEmailAndPassword, User } from "firebase/auth";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 
 type ContextProps = {
   currentUser: User | null;
@@ -49,6 +49,26 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const { navigate } = useHistory();
 
+    useEffect(() => {
+        const cachedUser = getSessionCache();
+
+        if (cachedUser) {
+            setCurrentUser(cachedUser)
+        }
+
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+              setSessionCache(user);
+            } else {
+              clearSessionCache();
+            }
+
+            setCurrentUser(user);
+        });
+
+        return () => unsubscribe();
+    }, [])
+
 
     async function login(email: string, password: string) {
         try {
@@ -64,7 +84,15 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
 
     async function logout() {
-        
+        try {
+            await signOut(auth);
+            clearSessionCache();
+            setCurrentUser(null);
+            navigate("/login")
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

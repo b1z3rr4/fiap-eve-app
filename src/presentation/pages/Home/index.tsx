@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/modules/Card";
 import { IEvent } from "../../../application/models/event";
 import * as S from "./styles";
@@ -21,13 +21,12 @@ export function Home() {
   return (
     <div>
       <S.HomeContainer>
+        <CardEmpty onClick={addNewEvent}>+</CardEmpty>
+
         {events.map((e) => (
           <Card key={e.name} event={e}/>
         ))}
-
-        <CardEmpty onClick={addNewEvent}>+</CardEmpty>
       </S.HomeContainer>
-      <Outlet />
     </div>
   );
 }
