@@ -4,14 +4,17 @@ import { GlobalTheme } from "./application/libs/styling";
 import { theme } from "./presentation/styles";
 import { ProfileProvider } from "./presentation/contexts/ProfileContext";
 import { AppBar } from "./presentation/components/features/AppBar";
+import { AuthProvider } from "./presentation/contexts/AuthContext";
 
 function App() {
   return (
     <GlobalTheme theme={theme}>
       <ProfileProvider>
         <BrowserRouter>
-          <AppBar />
-          <AppRoute />
+          <AuthProvider>
+            <AppBar />
+            <AppRoute />
+          </AuthProvider>
         </BrowserRouter>
       </ProfileProvider>
     </GlobalTheme>

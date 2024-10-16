@@ -1,12 +1,42 @@
-import { useContext } from "react"
-import { ProfileContext } from "../../contexts/ProfileContext"
+import { Button } from "@/presentation/components/elements/Button";
+import { Input } from "@/presentation/components/elements/Input";
+import { Logo } from "@/presentation/components/modules/Logo/Logo";
+import * as S from './styles';
+import { useAuth } from "@/presentation/contexts/AuthContext";
+import { useState } from "react";
 
 export function Login() {
-    const { name } = useContext(ProfileContext);
+    const { login } = useAuth();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        if (email && password) {
+            login(email, password);
+        }
+    }
 
     return (
-        <div>
-            <h1>Bem vindo(a) ao Login {name}!</h1>
-        </div>
+        <S.Container>
+        <S.ContainerLogin>
+          <Logo />
+          <S.ContainerInput>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Senha"
+            />
+          </S.ContainerInput>
+          <Button onClick={handleLogin}>Entrar</Button>
+        </S.ContainerLogin>
+      </S.Container>
     )
 }

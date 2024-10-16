@@ -1,4 +1,7 @@
-import { createContext, PropsWithChildren, useContext } from "react";
+import { auth } from "@/application/libs/firebase";
+import { useHistory } from "@/application/libs/history";
+import { signInWithEmailAndPassword, User } from "firebase/auth";
+import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 type ContextProps = {
   currentUser: User | null;
@@ -43,9 +46,29 @@ export const AuthContext = createContext(initialAuthContext);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const { navigate } = useHistory();
+
+
+    async function login(email: string, password: string) {
+        try {
+            const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+            console.log(user);
+            setCurrentUser(user);
+            setSessionCache(user);
+            navigate("/home");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function logout() {
+        
+    }
 
     return (
-        <AuthContext.Provider value={{}}>
+        <AuthContext.Provider value={{ login, logout, currentUser }}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,11 +1,19 @@
-import styled from "styled-components";
+import { theme } from "@/presentation/styles";
+import * as S from "./styles";
 
-const LogoParagraph = styled.p`
-  font-size: 32px;
-  color: #0077b6;
-  font-weight: 600;
-`;
+export const Logo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
+  const sizeOptions = {
+    sm: 32,
+    md: 64,
+    lg: 96,
+  };
 
-export function Logo() {
-  return <LogoParagraph>eve</LogoParagraph>;
-}
+  return (
+    <S.AppLogo
+      fontSize={sizeOptions[size]}
+      style={{ color: theme.primaryColor }}
+    >
+      eve
+    </S.AppLogo>
+  );
+};
