@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { IEvent } from "../../../../application/models/event";
 import { Button } from "../../elements/Button";
 import * as S from "./styles";
@@ -6,11 +5,10 @@ import { Paragraph } from "../../elements/Paragraph";
 
 interface CardProps {
   event: IEvent;
+  onClick: (...props: unknown[]) => void;
 }
 
-export const Card = ({ event }: CardProps) => {
-  const navigate = useNavigate();
-
+export const Card = ({ event, onClick }: CardProps) => {
   return (
     <S.CardContainer>
       <S.ImageContainer>
@@ -21,7 +19,7 @@ export const Card = ({ event }: CardProps) => {
         <Paragraph className="description">{event.description}</Paragraph>
       </S.DescriptionContainer>
       <S.ActionsContainer>
-        <Button onClick={() => navigate(`/edit/1`)}>Editar</Button>
+        <Button onClick={onClick}>Editar</Button>
       </S.ActionsContainer>
     </S.CardContainer>
   );

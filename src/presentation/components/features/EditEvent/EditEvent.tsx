@@ -1,22 +1,55 @@
 import { UploadImage } from "@/presentation/components/features/UploadImage";
 import * as S from "./styles";
 import { Button } from "@/presentation/components/elements/Button";
-import { useForm, UseFormSetValue } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { storageFirebaseService } from "@/application/services/storageFirebase";
 import { InputForm } from "@/presentation/components/modules/InputForm";
 import { useAuth } from "@/presentation/contexts/AuthContext";
-import { eventsService } from "@/application/services/events";
 import { useToast } from "@/presentation/hooks/useToast";
-import { useHistory } from "@/application/libs/history";
+import { IEvent } from "@/application/models/event";
 
 export const UPLOAD_NAME = "fileUpload";
 
-export function FormEvent() {
-  const { handleSubmit, watch, setValue } = useForm();
+type Options =
+  | "fileUpload"
+  | "day"
+  | "hour"
+  | "name"
+  | "price"
+  | "type"
+  | "description"
+  | "slots";
+
+export function EditEvent({
+  id,
+  day,
+  hour,
+  name,
+  photo,
+  price,
+  type,
+  description,
+  vacancies,
+  onClose,
+  onConfirm
+}: IEvent & { onClose: () => void, onConfirm: (event: IEvent) => Promise<void> }) {
+  const { handleSubmit, watch, setValue } = useForm({
+    defaultValues: {
+      day,
+      hour,
+      name,
+      price,
+      type,
+      description,
+      slots: vacancies,
+      fileUpload: photo as unknown as File,
+      address: "",
+    },
+  });
+
   const { currentUser } = useAuth();
 
   const { notifySuccess, notifyError } = useToast();
-  const { navigate } = useHistory();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSendEvent = async (data: any) => {
@@ -28,13 +61,13 @@ export function FormEvent() {
         photo: upload.downloadURL,
         creator: currentUser?.uid,
         ...data,
-        vacancies: data.slots,
+        id
       };
 
-      await eventsService.createEvent(event);
+      await onConfirm(event);
 
-      notifySuccess("Evento criado com sucesso!");
-      navigate("/home");
+      notifySuccess("Evento atualizado com sucesso!");
+      onClose();
     } catch (error) {
       console.error(error);
       notifyError("Erro ao criar evento.");
@@ -45,28 +78,14 @@ export function FormEvent() {
     <S.FormContainer>
       <form onSubmit={handleSubmit(handleSendEvent)}>
         <div>
-          <UploadImage
-            setValue={
-              setValue as unknown as UseFormSetValue<{
-                day: string;
-                hour: string;
-                name: string;
-                price: number;
-                type: string;
-                fileUpload: File;
-                address: string;
-                description: string | undefined;
-                slots: number | undefined;
-              }>
-            }
-          />
+          <UploadImage setValue={setValue} />
         </div>
         <div>
           <InputForm
             label="Titulo"
             name="name"
             value={watch("name")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
@@ -77,7 +96,7 @@ export function FormEvent() {
             type="date"
             defaultValue="full"
             value={watch("day")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
@@ -88,14 +107,14 @@ export function FormEvent() {
             type="time"
             defaultValue="full"
             value={watch("hour")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
         <div>
           <S.Select
             name="type"
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           >
             <option value="online">Online</option>
             <option value="presencial">Presencial</option>
@@ -107,7 +126,7 @@ export function FormEvent() {
             label="Valor"
             name="price"
             value={watch("price")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
@@ -117,7 +136,7 @@ export function FormEvent() {
             type="textarea"
             name="description"
             value={watch("description")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
@@ -126,7 +145,7 @@ export function FormEvent() {
             label="Localização"
             name="address"
             value={watch("address")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 
@@ -136,7 +155,7 @@ export function FormEvent() {
             name="slots"
             type="number"
             value={watch("slots")}
-            onChange={(e) => setValue(e.target.name, e.target.value)}
+            onChange={(e) => setValue(e.target.name as Options, e.target.value)}
           />
         </div>
 

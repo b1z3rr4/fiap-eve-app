@@ -58,7 +58,6 @@ export function Forms() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("enviou");
   };
   // elemento html multi-elemento
 

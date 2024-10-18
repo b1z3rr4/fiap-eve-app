@@ -1,11 +1,21 @@
 import { useRef, useState } from "react";
 import * as S from './styles';
 import addImage from '@/application/assets/addImage.png';
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form";
 import { UPLOAD_NAME } from "@/presentation/pages/FormEvent";
 
 export function UploadImage({ setValue }: {
-    setValue: UseFormSetValue<FieldValues>
+    setValue: UseFormSetValue<{
+      day: string;
+      hour: string;
+      name: string;
+      price: number;
+      type: string;
+      fileUpload: File;
+      address: string;
+      description: string | undefined;
+      slots: number | undefined;
+  }>
 }) {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -47,7 +57,7 @@ export function UploadImage({ setValue }: {
       {!file && <S.ImageUploadButton src={addImage} onClick={handleClickOnImage} />}
       {preview && (
         <S.ImageContainer>
-          <S.Image src={preview} />
+          <S.Image src={preview} onClick={handleClickOnImage} />
         </S.ImageContainer>
       )}
     </>

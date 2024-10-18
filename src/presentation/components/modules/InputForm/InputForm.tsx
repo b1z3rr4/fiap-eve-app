@@ -19,7 +19,6 @@ export const InputForm = ({
   type = "text",
   ...props
 }: InputFormProps & TextAreaFormProps) => {
-  console.log(props);
   return (
     <S.FieldSetStyle>
       <S.LabelStyle>

@@ -8,6 +8,7 @@ export interface IEvent {
     type: string;
 
     creator: string;
+    id?: string;
     latitude?: string;
     vacancies?: number;
     longitude?: string;

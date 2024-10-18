@@ -63,7 +63,6 @@ export const ProfileProvider = ({ children }: PropsWithChildren) => {
     const [state, dispatchState] = useReducer(reducerProfile, initialReducerValues);
 
     // const [name, setName] = useState('FIAP');
-    console.log(state);
 
     const setName = (value: string) => {
         dispatchState({

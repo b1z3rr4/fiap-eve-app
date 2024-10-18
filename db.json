@@ -31,18 +31,17 @@
       "manyRequests": true
     },
     {
-      "id": "fe9d",
-      "photo": "https://firebasestorage.googleapis.com/v0/b/dtaf-652b7.appspot.com/o/images%2FUntitled_6_8cf5cf1ca8.png?alt=media&token=6b68a295-f823-4836-97d1-3c690729ed6e",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/dtaf-652b7.appspot.com/o/images%2Fundefined?alt=media&token=cd6d55c0-8087-4a75-b362-f92c79099a97",
       "creator": "Rwo8NtJ3w3UVvRuLeNBFlR6RuT93",
-      "fileUpload": {},
-      "name": "RD SUMMIT",
       "day": "2024-10-21",
       "hour": "19:00",
-      "type": "presencial",
+      "name": "RD SUMMIT 5",
       "price": "150",
+      "type": "presencial",
       "description": "Evento de tecnologia voltado para empresas com espirito de inovação.",
-      "address": "São Paulo",
-      "slots": "300"
+      "fileUpload": "https://firebasestorage.googleapis.com/v0/b/dtaf-652b7.appspot.com/o/images%2Fundefined?alt=media&token=87f91616-280b-44b2-814a-792f027c6116",
+      "address": "",
+      "id": "fe9d"
     }
   ]
 }

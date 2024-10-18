@@ -1,21 +1,40 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/modules/Card";
 import { IEvent } from "../../../application/models/event";
 import * as S from "./styles";
 import { CardEmpty } from "../../components/modules/CardEmpty";
-// import { events as eventsMock } from "@/application/mocks/events";
 import { eventsService } from "@/application/services/events";
 import { useAuth } from "@/presentation/contexts/AuthContext";
+import { Modal } from "@/presentation/components/modules/Modal/Modal";
+import { EditEvent } from "@/presentation/components/features/EditEvent/EditEvent";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function Home() {
-  const [events, setEvents] = useState<IEvent[]>([]);
+  const { data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () => eventsService.listEventsByUserId(currentUser?.uid as string),
+  })
+
+  const events = data?.data;
+
+  const queryClient = useQueryClient();
+
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    eventsService.listEventsByUserId(currentUser?.uid as string).then((res) => setEvents(res.data as unknown as IEvent[]))
-  }, [currentUser?.uid]);
+  const [openModal, setOpenModal] = useState(false);
+  const [eventSelected, setEventSelected] = useState<IEvent | null>(null);
+
+  const handleOpenModal = (event: IEvent) => {
+    setOpenModal(true);
+    setEventSelected(event);
+  }
+
+  const handleConfirmEditEvent = async (event: IEvent) => {
+    await eventsService.updateEvent(event);
+    queryClient.invalidateQueries({ queryKey: ['repoData'] })
+  }
 
   const addNewEvent = () => {
     navigate("/form");
@@ -23,11 +42,14 @@ export function Home() {
 
   return (
     <div>
+      <Modal isOpen={openModal} >
+        {eventSelected && <EditEvent {...eventSelected} onConfirm={handleConfirmEditEvent} onClose={() => setOpenModal(false)} />}
+      </Modal>
       <S.HomeContainer>
         <CardEmpty onClick={addNewEvent}>+</CardEmpty>
 
-        {events?.map((e) => (
-          <Card key={e.name} event={e}/>
+        {events?.map((event) => (
+          <Card key={event.name} event={event} onClick={() => handleOpenModal(event)} />
         ))}
       </S.HomeContainer>
     </div>
