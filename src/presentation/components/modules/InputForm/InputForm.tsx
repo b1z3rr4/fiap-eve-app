@@ -10,6 +10,7 @@ interface InputFormProps extends InputProps {
 interface TextAreaFormProps extends TextareaProps {
   label?: string;
   error?: string;
+  defaultValue?: string;
 }
 
 export const InputForm = ({
@@ -29,7 +30,8 @@ export const InputForm = ({
           />
         ) : (
           <S.InputStyle
-            className={props.value ? "fulfilled" : props.className}
+            className={props.value || props.defaultValue ? "fulfilled" : props.className}
+            type={type}
             {...props}
           />
         )}

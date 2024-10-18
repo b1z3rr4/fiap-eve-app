@@ -1,14 +1,16 @@
 export interface IEvent {
-    day: string;
     name: string;
+    price: number;
+    photo: string;
+
+    day: string;
     hour: string;
     type: string;
-    photo: string;
-    price: number;
+
     creator: string;
-    latitude: string;
-    longitude: string;
-    vacancies: number;
-    description: string;
-    manyRequests: boolean;
+    latitude?: string;
+    vacancies?: number;
+    longitude?: string;
+    description?: string;
+    manyRequests?: boolean;
 };
