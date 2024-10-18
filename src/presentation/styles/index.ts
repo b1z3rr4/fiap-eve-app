@@ -10,8 +10,8 @@ export const theme = {
     mutedTextColor: '#636e72',
     errorColor: '#d63031',
     borderColor: '#E6E6E6',
-    borderRadius: '10px'
-,    poppinsFont: "'Poppins', sans-serif",
+    borderRadius: '10px',
+    poppinsFont: "'Poppins', sans-serif",
     poppinsSize: '16px',
     poppinsLineHeight: 1.5,
     poppinsLetterSpacing: '0.3px',

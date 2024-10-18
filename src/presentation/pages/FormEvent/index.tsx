@@ -1,21 +1,13 @@
-import { Button } from "../../components/elements/Button";
-import { useHistory } from "../../../application/libs/history";
-import { Forms } from "../../components/features/Forms";
+import { UploadImage } from '@/presentation/components/features/UploadImage';
+import * as S from './styles';
 
 export function FormEvent() {
-    const { goBack, navigate } = useHistory();
 
     return (
-        <div>
-            <h1>Bem vindo(a) a pagina de formulario!</h1>
-            <Forms />
-            <Button onClick={() => {
-                goBack(); // historia de acessos do usuario e ta voltando uma pagina
-            }}>Voltar</Button>
+        <S.FormContainer>
+            <h1 style={{ color: '#333'}}>Bem vindo(a) a pagina de formulario!</h1>
 
-            <Button onClick={() => {
-                navigate('/login');
-            }}>Ir para login</Button>
-        </div>
+            <UploadImage />
+        </S.FormContainer>
     )
 }
